@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     volumes:
-      - sqlserver_data:/var/opt/mssql
+      - ../volumes/sqlserver_data:/var/opt/mssql
 
   sqlpad:
     image: sqlpad/sqlpad:latest
