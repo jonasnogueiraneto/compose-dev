@@ -15,15 +15,15 @@ services:
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
-    restart: always
+    mem_limit: 1024m  # Limit memory usage to 1GB
+    cpus: 1  # Limit CPU usage to 1 core
     ports:
-      - "8081:80"
+      - "16543:80"  # Map port 16543 on the host to port 80 on the container
+    network_mode: "host"
     env_file:
-      - .env
-    depends_on:
-      - postgres
+      - .env  # Load environment variables from a file
     volumes:
-      - ./volumes/pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin_data:/var/lib/pgadmin  # Persist pgAdmin data
 
 volumes:
   postgres_data:
